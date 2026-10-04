@@ -27,6 +27,15 @@
     <ClCompile Include="BookMall.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="EBook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicalBook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UniqueFeature.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
@@ -36,6 +45,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="BookMall.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EBook.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicalBook.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UniqueFeature.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

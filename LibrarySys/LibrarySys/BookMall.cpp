@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-
-BookMall::BookMall() :m_bookCount(0), m_stuCount(0){}
+BookMall::BookMall() :m_bookCount(0), m_stuCount(0) {}
 
 void BookMall::addBook(const Book& b)//添加图书
 {
@@ -21,7 +20,7 @@ void BookMall::showAllBooks() const//展示所有图书
     for (int i = 0; i < m_bookCount; i++)
     {
         cout << "--- 第" << i + 1 << "本书 ---" << endl;
-        m_books[i].showBook();
+        m_books[i].showInfo();
     }
 }
 
@@ -41,7 +40,7 @@ void BookMall::showAllStudents() const//展示所有学生
     for (int i = 0; i < m_stuCount; i++)
     {
         cout << "--- 第" << i + 1 << "个学生 ---" << endl;
-        m_stus[i].showStudent();
+        m_stus[i].showStudentInfo();
     }
 }
 
@@ -73,7 +72,6 @@ bool BookMall::borrowBook(const string& stuId, const string& bookId)
 {
     Student* pStu = findStudentById(stuId);
     Book* pBook = findBookById(bookId);
-
     if (pStu == nullptr)
     {
         cout << "借书失败：不存在该学生！" << endl;
@@ -91,7 +89,6 @@ bool BookMall::returnBook(const string& stuId, const string& bookId)
 {
     Student* pStu = findStudentById(stuId);
     Book* pBook = findBookById(bookId);
-
     if (pStu == nullptr)
     {
         cout << "还书失败：不存在该学生！" << endl;
@@ -104,21 +101,3 @@ bool BookMall::returnBook(const string& stuId, const string& bookId)
     }
     return pStu->returnBook(*pBook);
 }
-
-void BookMall::showAvailableByVector() const//特色功能
-{
-    vector<Book> tempVec;
-    for (int i = 0; i < m_bookCount; i++)
-    {
-        tempVec.push_back(m_books[i]);
-    }
-    cout << "\n====特色功能====\n";
-    for (const auto& book : tempVec)
-    {
-        if (book.getstate()) 
-        {
-            book.showBook();
-        }
-    }
-}
-

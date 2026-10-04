@@ -125,13 +125,19 @@
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookMall.cpp" />
+    <ClCompile Include="EBook.cpp" />
     <ClCompile Include="LibrarySys.cpp" />
+    <ClCompile Include="PhysicalBook.cpp" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="UniqueFeature.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookMall.h" />
+    <ClInclude Include="EBook.h" />
+    <ClInclude Include="PhysicalBook.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="UniqueFeature.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

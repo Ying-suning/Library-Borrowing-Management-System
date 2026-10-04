@@ -1,43 +1,38 @@
-﻿// LibrarySys.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include "Book.h"
 #include "Student.h"
 #include "BookMall.h"
+#include "UniqueFeature.h"
 using namespace std;
-
 int main()
 {
     cout << "===== 图书馆管理系统（BookMall）=====\n" << endl;
-
     BookMall lib;
-
     //添书
     Book b1("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, true);
     Book b2("数据结构", "妍妍", "9787302023685", "1495585", "清华大学出版社", 145.0, true);
     lib.addBook(b1);
     lib.addBook(b2);
-
     //添加学生
     Student s1("5120250001", "小红");
     lib.addStudent(s1);
-
     //查看所有图书、学生
     lib.showAllBooks();
     lib.showAllStudents();
-
     //借书
     cout << "\n====小红借C++程序设计====" << endl;
     lib.borrowBook("5120250001", "1495584");
     lib.showAllBooks();
-
     //还书
     cout << "\n====小红还书====" << endl;
     lib.returnBook("5120250001", "1495584");
     lib.showAllBooks();
 
-    lib.showAvailableByVector();
+    //====调用特色功能 UniqueFeature====
+    UniqueFeature feat;
+    feat.addBook(b1);
+    feat.addBook(b2);
+    feat.execute();
 
     return 0;
 }
