@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
+#include <iostream>
 using namespace std;
+
 class Book
 {
 private:
@@ -13,12 +15,13 @@ private:
     bool m_state;
 public:
     Book();
-    Book(string na, string au, string isbn, string id,
-        string pu, double pr, bool state);
+    Book(string na, string au, string isbn, string id, string pu, double pr, bool state);
     double getprice();
     void setprice(double pr);
-    bool getstate();
+    bool getstate() const;
     void setstate(bool st);
-    void showBook();
+    void showBook() const;
+    string getId();
 };
+
 

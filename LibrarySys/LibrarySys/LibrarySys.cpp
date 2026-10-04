@@ -3,13 +3,45 @@
 
 #include <iostream>
 #include "Book.h"
+#include "Student.h"
+#include "BookMall.h"
+using namespace std;
+
 int main()
 {
-    cout << "Hello World!\n";
-    Book book1;
-    book1.showBook();
+    cout << "===== 图书馆管理系统（BookMall）=====\n" << endl;
+
+    BookMall lib;
+
+    //添书
+    Book b1("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, true);
+    Book b2("数据结构", "妍妍", "9787302023685", "1495585", "清华大学出版社", 145.0, true);
+    lib.addBook(b1);
+    lib.addBook(b2);
+
+    //添加学生
+    Student s1("5120250001", "小红");
+    lib.addStudent(s1);
+
+    //查看所有图书、学生
+    lib.showAllBooks();
+    lib.showAllStudents();
+
+    //借书
+    cout << "\n====小红借C++程序设计====" << endl;
+    lib.borrowBook("5120250001", "1495584");
+    lib.showAllBooks();
+
+    //还书
+    cout << "\n====小红还书====" << endl;
+    lib.returnBook("5120250001", "1495584");
+    lib.showAllBooks();
+
+    lib.showAvailableByVector();
+
     return 0;
 }
+
 
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

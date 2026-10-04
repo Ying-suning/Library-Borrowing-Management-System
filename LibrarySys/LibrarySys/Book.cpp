@@ -4,8 +4,8 @@ using namespace std;
 
 Book::Book()
 {
-    m_name = "c++";
-    m_author = "HOUJIE";
+    m_name = "C++程序设计";
+    m_author = "晓晓";
     m_id = "1495584";
     m_publisher = "人民邮电出版社";
     m_isbn = "978-7-111-24212-3";
@@ -32,7 +32,7 @@ void Book::setprice(double pr)
 {
     m_price = pr;
 }
-bool Book::getstate()
+bool Book::getstate() const
 {
     return m_state;
 }
@@ -40,7 +40,7 @@ void Book::setstate(bool st)
 {
     m_state = st;
 }
-void Book::showBook()
+void Book::showBook() const
 {
     cout << "书名：" << m_name << endl;
     cout << "作者：" << m_author << endl;
@@ -49,7 +49,13 @@ void Book::showBook()
     cout << "出版社：" << m_publisher << endl;
     cout << "价格：" << m_price << endl;
     if (m_state)
+
         cout << "状态：在馆" << endl;
     else
         cout << "状态：已借出" << endl;
 }
+string Book::getId()
+{
+    return m_id;
+}
+
