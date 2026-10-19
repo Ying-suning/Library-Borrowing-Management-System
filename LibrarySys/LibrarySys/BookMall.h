@@ -23,5 +23,9 @@ public:
     Book* findBookById(const std::string& bookId);
     bool borrowBook(const std::string& stuId, const std::string& bookId);
     bool returnBook(const std::string& stuId, const std::string& bookId);
+    bool addBookCount(const string& bookId, int addNum);
+    bool subBookCount(const string& bookId, int subNum);
+    bool delBook(const string& bookId);
+
 };
 #endif

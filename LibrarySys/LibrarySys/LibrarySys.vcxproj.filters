@@ -36,6 +36,12 @@
     <ClCompile Include="UniqueFeature.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Magazine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Book.h">
@@ -50,10 +56,13 @@
     <ClInclude Include="EBook.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicalBook.h">
+    <ClInclude Include="UniqueFeature.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="UniqueFeature.h">
+    <ClInclude Include="Magazine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EResource.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

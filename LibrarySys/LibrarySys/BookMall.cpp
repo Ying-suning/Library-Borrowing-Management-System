@@ -4,7 +4,8 @@ using namespace std;
 
 BookMall::BookMall() :m_bookCount(0), m_stuCount(0) {}
 
-void BookMall::addBook(const Book& b)//添加图书
+//添加图书
+void BookMall::addBook(const Book& b)
 {
     if (m_bookCount >= 20)
     {
@@ -14,7 +15,8 @@ void BookMall::addBook(const Book& b)//添加图书
     m_books[m_bookCount++] = b;
 }
 
-void BookMall::showAllBooks() const//展示所有图书
+//展示所有图书
+void BookMall::showAllBooks() const
 {
     cout << "\n======== 图书馆全部图书 ========" << endl;
     for (int i = 0; i < m_bookCount; i++)
@@ -24,7 +26,8 @@ void BookMall::showAllBooks() const//展示所有图书
     }
 }
 
-void BookMall::addStudent(const Student& s)//加学生
+//加学生
+void BookMall::addStudent(const Student& s)
 {
     if (m_stuCount >= 10)
     {
@@ -34,7 +37,8 @@ void BookMall::addStudent(const Student& s)//加学生
     m_stus[m_stuCount++] = s;
 }
 
-void BookMall::showAllStudents() const//展示所有学生
+//展示所有学生
+void BookMall::showAllStudents() const
 {
     cout << "\n======== 所有学生 ========" << endl;
     for (int i = 0; i < m_stuCount; i++)
@@ -44,7 +48,8 @@ void BookMall::showAllStudents() const//展示所有学生
     }
 }
 
-Student* BookMall::findStudentById(const string& id)//学号找对应学生
+//学号找对应学生
+Student* BookMall::findStudentById(const string& id)
 {
     for (int i = 0; i < m_stuCount; i++)
     {
@@ -56,7 +61,8 @@ Student* BookMall::findStudentById(const string& id)//学号找对应学生
     return nullptr;
 }
 
-Book* BookMall::findBookById(const string& bookId)//用图书编号找书
+//用图书编号找书
+Book* BookMall::findBookById(const string& bookId)
 {
     for (int i = 0; i < m_bookCount; i++)
     {
@@ -68,6 +74,7 @@ Book* BookMall::findBookById(const string& bookId)//用图书编号找书
     return nullptr;
 }
 
+//借书
 bool BookMall::borrowBook(const string& stuId, const string& bookId)
 {
     Student* pStu = findStudentById(stuId);
@@ -85,6 +92,7 @@ bool BookMall::borrowBook(const string& stuId, const string& bookId)
     return pStu->borrowBook(*pBook);
 }
 
+//还书
 bool BookMall::returnBook(const string& stuId, const string& bookId)
 {
     Student* pStu = findStudentById(stuId);
@@ -100,4 +108,57 @@ bool BookMall::returnBook(const string& stuId, const string& bookId)
         return false;
     }
     return pStu->returnBook(*pBook);
+}
+
+
+//增加图书数量
+bool BookMall::addBookCount(const string& bookId, int addNum)
+{
+    Book* pBook = findBookById(bookId);
+    if (pBook == nullptr)
+    {
+        cout << "增加数量失败：图书不存在！" << endl;
+        return false;
+    }
+    cout << "图书数量增加成功！" << endl;
+    return true;
+}
+
+
+//减少图书数量
+bool BookMall::subBookCount(const string& bookId, int subNum)
+{
+    Book* pBook = findBookById(bookId);
+    if (pBook == nullptr)
+    {
+        cout << "减少数量失败：图书不存在！" << endl;
+        return false;
+    }
+    return true;
+}
+
+//删除指定图书
+bool BookMall::delBook(const string& bookId)
+{
+    int index = -1;
+    for (int i = 0; i < m_bookCount; i++)
+    {
+        if (m_books[i].getId() == bookId)
+        {
+            index = i;
+            break;
+        }
+    }
+    if (index == -1)
+    {
+        cout << "删除失败，未找到该图书！" << endl;
+        return false;
+    }
+    for (int i = index; i < m_bookCount - 1; i++)
+    {
+        m_books[i] = m_books[i + 1];
+    }
+    m_bookCount--;
+    cout << "图书删除成功！" << endl;
+    return true;
 }

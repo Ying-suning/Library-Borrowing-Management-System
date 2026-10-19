@@ -10,7 +10,9 @@ protected:
     string m_name;
 public:
     Resource(string id, string name) : m_id(id), m_name(name) {}
+    //纯虚函数,接口继承
     virtual void showInfo() const = 0;
+    //实现继承
     string getId() const { return m_id; }
 };
 

@@ -3,10 +3,13 @@
 #include "Student.h"
 #include "BookMall.h"
 #include "UniqueFeature.h"
+#include "Magazine.h"
+#include "EResource.h"
+
 using namespace std;
 int main()
 {
-    cout << "===== 图书馆管理系统（BookMall）=====\n" << endl;
+    cout << "===== 图书馆管理系统=====\n" << endl;
     BookMall lib;
     //添书
     Book b1("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, true);
@@ -16,11 +19,12 @@ int main()
     //添加学生
     Student s1("5120250001", "小红");
     lib.addStudent(s1);
-    //查看所有图书、学生
+    //查看所有图书
     lib.showAllBooks();
+    //查看所有学生
     lib.showAllStudents();
     //借书
-    cout << "\n====小红借C++程序设计====" << endl;
+    cout << "\n====小红借书====" << endl;
     lib.borrowBook("5120250001", "1495584");
     lib.showAllBooks();
     //还书
@@ -28,11 +32,23 @@ int main()
     lib.returnBook("5120250001", "1495584");
     lib.showAllBooks();
 
-    //====调用特色功能 UniqueFeature====
+    //调用特色功能
     UniqueFeature feat;
     feat.addBook(b1);
     feat.addBook(b2);
     feat.execute();
+
+    //
+    Resource* r1 = new Magazine("计算机学报", "2026第3期", "M001", true);
+    Resource* r2 = new EResource("C++教学视频", "xxxxxxxxxx", "E001", true);
+    Resource* r3 = new Book("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, true);
+    r1->showInfo();
+    r2->showInfo();
+    r3->showInfo();
+    delete r1;
+    delete r2;
+    delete r3;
+
 
     return 0;
 }
