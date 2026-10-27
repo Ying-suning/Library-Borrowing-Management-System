@@ -1,20 +1,5 @@
 #pragma once
-#include <string>
-#include <iostream>
-using namespace std;
-
-class Resource
-{
-protected:
-    string m_id;
-    string m_name;
-public:
-    Resource(string id, string name) : m_id(id), m_name(name) {}
-    //纯虚函数,接口继承
-    virtual void showInfo() const = 0;
-    //实现继承
-    string getId() const { return m_id; }
-};
+#include "Resource.h"
 
 class Book : public Resource
 {
@@ -23,13 +8,19 @@ private:
     string m_isbn;
     string m_publisher;
     double m_price;
-    bool m_state;
+    int m_stock;
+
 public:
-    Book(string na, string au, string isbn, string id, string pu, double pr, bool state);
+    Book(string na, string au, string isbn, string id, string pu, double pr, int stock);
     Book();
+
     double getprice() const;
     void setprice(double pr);
-    bool getBorrowState() const;
-    void setBorrowState(bool st);
+    int getStock() const;
+    void setStock(int s);
+    bool isAvailable() const { return m_stock > 0; }
+
     void showInfo() const override;
+    bool borrowResource() override;
+    void returnResource() override;
 };

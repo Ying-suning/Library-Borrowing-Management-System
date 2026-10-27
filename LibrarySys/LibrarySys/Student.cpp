@@ -2,47 +2,62 @@
 #include <iostream>
 using namespace std;
 
-Student::Student(string id, string name) :stuId(id), stuName(name), borrowCount(0) {}
+Student::Student(string id, string name) : stuId(id), stuName(name), borrowCount(0) {}
 
-string Student::getStuId() const {
-    return stuId;
-}
-
-int Student::getBorrowCount() const {
-    return borrowCount;
-}
-
-bool Student::borrowBook(Book& book) {
+bool Student::borrowResource(Resource* res) {
     if (borrowCount >= 3) {
         cout << "借书失败，已达到最大借阅上限！" << endl;
         return false;
     }
-    if (!book.getBorrowState()) {
-        cout << "借书失败，图书已被借出！" << endl;
+    for (const string& id : borrowedIds) {
+        if (id == res->getId()) {
+            cout << "借书失败，你已借过该资源！" << endl;
+            return false;
+        }
+    }
+
+    if (res->borrowResource()) {
+        borrowCount++;
+        borrowedIds.push_back(res->getId());
+        cout << "借阅成功！" << endl;
+        return true;
+    }
+    else {
+        cout << "借阅失败，资源已全部借出或不可用！" << endl;
         return false;
     }
-    book.setBorrowState(false);
-    borrowCount++;
-    cout << "借书成功！" << endl;
-    return true;
 }
 
-bool Student::returnBook(Book& book) {
-    if (borrowCount <= 0) {
-        cout << "还书失败，没有借阅图书！" << endl;
+bool Student::returnResource(Resource* res) {
+    bool found = false;
+    for (size_t i = 0; i < borrowedIds.size(); i++) {
+        if (borrowedIds[i] == res->getId()) {
+            borrowedIds.erase(borrowedIds.begin() + i);
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "还书失败，你没有借该资源！" << endl;
         return false;
     }
-    if (book.getBorrowState()) {
-        cout << "还书失败，图书未借出！" << endl;
-        return false;
-    }
-    book.setBorrowState(true);
+
+    res->returnResource();
     borrowCount--;
     cout << "还书成功！" << endl;
     return true;
 }
 
 void Student::showStudentInfo() const {
-    cout << "学号：" << stuId << " 姓名：" << stuName << " 已借图书：" << borrowCount << "本" << endl;
+    cout << "学号：" << stuId << " 姓名：" << stuName
+        << " 已借资源：" << borrowCount << "个";
+    if (!borrowedIds.empty()) {
+        cout << " [";
+        for (size_t i = 0; i < borrowedIds.size(); i++) {
+            if (i) cout << ", ";
+            cout << borrowedIds[i];
+        }
+        cout << "]";
+    }
+    cout << endl;
 }
-

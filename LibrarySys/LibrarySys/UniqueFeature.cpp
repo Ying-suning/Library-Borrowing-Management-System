@@ -1,21 +1,18 @@
 #include "UniqueFeature.h"
 #include <iostream>
-using namespace std;
 
-void UniqueFeature::addBook(const Book& b)
-{
-    bookList.push_back(b);
-}
+UniqueFeature::~UniqueFeature(){}
+
+void UniqueFeature::addBook(Resource* b) { bookList.push_back(b); }
 
 void UniqueFeature::execute()
 {
-    cout << "\n====特色功能====\n";
-    for (const auto& book : bookList)
+    cout << "\n====特色功能（当前可借阅资源）====\n";
+    for (Resource* r : bookList)
     {
-        if (book.getBorrowState())
+        if (r->getBorrowState())
         {
-            book.showInfo();
+            r->showInfo();
         }
     }
 }
-

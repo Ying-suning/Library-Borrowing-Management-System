@@ -1,11 +1,14 @@
 #pragma once
-#include "Book.h"
+#include "Resource.h"
 #include <vector>
+using namespace std;
+
 class UniqueFeature
 {
 private:
-    vector<Book> bookList;
+    vector<Resource*> bookList;
 public:
-    void addBook(const Book& b);
-    void execute(); 
+    ~UniqueFeature();
+    void addBook(Resource* b);
+    void execute();
 };

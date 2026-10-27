@@ -129,7 +129,7 @@
     <ClCompile Include="EResource.cpp" />
     <ClCompile Include="LibrarySys.cpp" />
     <ClCompile Include="Magazine.cpp" />
-    <ClCompile Include="PhysicalBook.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="UniqueFeature.cpp" />
   </ItemGroup>
@@ -139,6 +139,7 @@
     <ClInclude Include="EBook.h" />
     <ClInclude Include="EResource.h" />
     <ClInclude Include="Magazine.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="UniqueFeature.h" />
   </ItemGroup>

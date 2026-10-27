@@ -1,22 +1,23 @@
-#ifndef STUDENT_H
-#define STUDENT_H
+#pragma once
 #include <string>
-#include "Book.h"
+#include <vector>
+#include "Resource.h"
 using namespace std;
 
 class Student {
 private:
     string stuId;
     string stuName;
-    int borrowCount; 
+    int borrowCount;
+    vector<string> borrowedIds;
 public:
-    Student() = default;
+    Student() : borrowCount(0) {}
     Student(string id, string name);
-    string getStuId() const;
-    string getId() const { return getStuId(); }
-    int getBorrowCount() const;
-    bool borrowBook(Book& book);
-    bool returnBook(Book& book);
+
+    string getStuId() const { return stuId; }
+    int getBorrowCount() const { return borrowCount; }
+
+    bool borrowResource(Resource* res);
+    bool returnResource(Resource* res);
     void showStudentInfo() const;
 };
-#endif

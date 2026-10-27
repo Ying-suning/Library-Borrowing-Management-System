@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "Resource.h"
 #include "Book.h"
 #include "Student.h"
 #include "BookMall.h"
@@ -7,52 +8,42 @@
 #include "EResource.h"
 
 using namespace std;
+
 int main()
 {
     cout << "===== 图书馆管理系统=====\n" << endl;
     BookMall lib;
-    //添书
-    Book b1("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, true);
-    Book b2("数据结构", "妍妍", "9787302023685", "1495585", "清华大学出版社", 145.0, true);
-    lib.addBook(b1);
-    lib.addBook(b2);
-    //添加学生
+
+    lib.addResource(new Book("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, 1));
+    lib.addResource(new Magazine("计算机学报", "2026第3期", "M001", true));
+    lib.addResource(new EResource("C++教学视频", "xxxxxxxxxx", "E001", true));
+
+    lib.showAllResources();
+
     Student s1("5120250001", "小红");
     lib.addStudent(s1);
-    //查看所有图书
-    lib.showAllBooks();
-    //查看所有学生
+
+    lib.showAllResources();
     lib.showAllStudents();
-    //借书
-    cout << "\n====小红借书====" << endl;
-    lib.borrowBook("5120250001", "1495584");
-    lib.showAllBooks();
-    //还书
+
+    cout << "\n====小红借阅====" << endl;
+    lib.borrowResource("5120250001", "1495584");
+    lib.borrowResource("5120250001", "M001");
+    lib.showAllResources();
+
+    lib.showAllStudents();
+
     cout << "\n====小红还书====" << endl;
-    lib.returnBook("5120250001", "1495584");
-    lib.showAllBooks();
+    lib.returnResource("5120250001", "1495584");
+    lib.showAllResources();
 
-    //调用特色功能
     UniqueFeature feat;
-    feat.addBook(b1);
-    feat.addBook(b2);
+    Resource* availableBook = lib.findResourceById("1495584");
+    if (availableBook) feat.addBook(availableBook);
     feat.execute();
-
-    //
-    Resource* r1 = new Magazine("计算机学报", "2026第3期", "M001", true);
-    Resource* r2 = new EResource("C++教学视频", "xxxxxxxxxx", "E001", true);
-    Resource* r3 = new Book("C++程序设计", "晓晓", "978-7-111-24212-3", "1495584", "人民邮电出版社", 59.0, true);
-    r1->showInfo();
-    r2->showInfo();
-    r3->showInfo();
-    delete r1;
-    delete r2;
-    delete r3;
-
 
     return 0;
 }
-
 
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
